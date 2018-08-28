@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>	
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<mapper namespace="com.mapper.GangweiMapper">	
+	
+		
+		
+	<select id="findGangweiList" 	
+		resultType="Gangwei">	
+		select * from gangwei 	
+	</select>	
+		
+	<select id="findGangweiByid" parameterType="int"	
+		resultType="Gangwei">	
+		select * from gangwei where id=${value}	
+	</select>	
+		
+	<select id="findGangweiByParam" parameterType="Gangwei"	
+		resultType="Gangwei">	
+		select * from gangwei 	
+		<where>	
+		<if test="name!=null and name!=''">	
+			and name=#{name}	
+		</if>	
+		<if test="sname!=null and sname!=''">	
+			and sname=#{sname}	
+		</if>	
+		</where>	
+			
+	</select>	
+		
+		
+	<insert id="insertGangwei" useGeneratedKeys="true" keyProperty="id" parameterType="Gangwei">	
+		insert into gangwei(zid,name,sname,states,adate) values(#{zid},#{name},#{sname},#{states},#{adate})
+	</insert>	
+		
+	<update id="updateGangwei" parameterType="Gangwei" >	
+		update gangwei set zid=#{zid},name=#{name},sname=#{sname},states=#{states},adate=#{adate} where id=#{id}		
+	</update>	
+		
+	<delete id="deleteGangwei" parameterType="int">	
+	    delete from  gangwei where id=${value}	
+	</delete>	
+	
+</mapper>	

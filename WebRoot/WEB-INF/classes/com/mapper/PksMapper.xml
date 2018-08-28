@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>	
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<mapper namespace="com.mapper.PksMapper">	
+	
+		
+		
+	<select id="findPksList" 	
+		resultType="Pks">	
+		select * from pks 	
+	</select>	
+		
+	<select id="findPksByid" parameterType="int"	
+		resultType="Pks">	
+		select * from pks where id=${value}	
+	</select>	
+		
+	<select id="findPksByParam" parameterType="Pks"	
+		resultType="Pks">	
+		select * from pks 	
+		<where>	
+		<if test="name!=null and name!=''">	
+			and name=#{name}	
+		</if>	
+		</where>	
+			
+	</select>	
+		
+		
+	<insert id="insertPks" useGeneratedKeys="true" keyProperty="id" parameterType="Pks">	
+		insert into pks(name,hao,sex,fujian,info,state,fen,grade,adate,userid) values(#{name},#{hao},#{sex},#{fujian},#{info},#{state},#{fen},#{grade},#{adate},#{userid})
+	</insert>	
+		
+	<update id="updatePks" parameterType="Pks" >	
+		update pks set name=#{name},hao=#{hao},sex=#{sex},fujian=#{fujian},info=#{info},state=#{state},fen=#{fen},grade=#{grade},adate=#{adate} where id=#{id}		
+	</update>	
+		
+	<delete id="deletePks" parameterType="int">	
+	    delete from  pks where id=${value}	
+	</delete>	
+	
+</mapper>	

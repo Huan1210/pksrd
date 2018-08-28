@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="pksrd"
+  id="myeclipse.1517800059417"
+  context-root="/pksrd"
+  j2ee-spec="5.0"
+  archive="pksrd.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

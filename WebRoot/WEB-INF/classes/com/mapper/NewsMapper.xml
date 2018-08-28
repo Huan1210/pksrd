@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>	
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<mapper namespace="com.mapper.NewsMapper">	
+	
+		
+		
+	<select id="findNewsList" 	
+		resultType="News">	
+		select * from news 	
+	</select>	
+		
+	<select id="findNewsByid" parameterType="int"	
+		resultType="News">	
+		select * from news where id=${value}	
+	</select>	
+		
+	<select id="findNewsByParam" parameterType="News"	
+		resultType="News">	
+		select * from news 	
+		<where>	
+		<if test="name!=null and name!=''">	
+			and name=#{name}	
+		</if>	
+		</where>	
+			
+	</select>	
+		
+		
+	<insert id="insertNews" useGeneratedKeys="true" keyProperty="id" parameterType="News">	
+		insert into news(name,info,adate) values(#{name},#{info},#{adate})	
+	</insert>	
+		
+	<update id="updateNews" parameterType="News" >	
+		update news set name=#{name},info=#{info},adate=#{adate} where id=#{id}		
+	</update>	
+		
+	<delete id="deleteNews" parameterType="int">	
+	    delete from  news where id=${value}	
+	</delete>	
+	
+</mapper>	

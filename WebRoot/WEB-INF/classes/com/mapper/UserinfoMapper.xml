@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserinfoMapper">
+
+	
+	
+	<select id="findUserinfoList" 
+		resultType="Userinfo">
+		select * from userinfo 
+	</select>
+	
+	<select id="findUserinfoByid" parameterType="int"
+		resultType="Userinfo">
+		select * from userinfo where id=${value}
+	</select>
+	
+	<select id="findUserinfoByParam" parameterType="Userinfo"
+		resultType="Userinfo">
+		select * from userinfo 
+		<where>
+		<if test="name!=null and name!=''">
+			and name=#{name}
+		</if>
+		<if test="password!=null and password!=''">
+			and password=#{password}
+		</if>
+		<if test="usertype!=null and usertype!=''">
+			and usertype=#{usertype}
+		</if>
+		</where>
+		
+	</select>
+	
+	
+	<insert id="insertUserinfo" useGeneratedKeys="true" keyProperty="id" parameterType="Userinfo">
+		insert into userinfo
+		(name,password,phone,usertype,rname,sex,xueli,dept,zhiwu)
+		values
+		(#{name},#{password},#{phone},#{usertype},#{rname},#{sex},#{xueli},#{dept},#{zhiwu});
+	</insert>
+	
+	<update id="updateUserinfo" parameterType="Userinfo" >
+		update userinfo set
+		name=#{name},password=#{password},phone=#{phone},usertype=#{usertype},rname=#{rname},sex=#{sex},xueli=#{xueli},dept=#{dept},zhiwu=#{zhiwu}
+		where
+		id=#{id}	
+	</update>
+	
+	<delete id="deleteUserinfo" parameterType="int">
+	    delete from  userinfo where id=${value}
+	</delete>
+
+</mapper>
